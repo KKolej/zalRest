@@ -1,4 +1,4 @@
-package com.kolej.bartosz.zalrest.model;
+package com.kolej.bartosz.zalrest.customer.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,9 +19,8 @@ public class CustomUser {
     private String password;
     private boolean enabled;
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Role> roles;
-
-    public CustomUser(String username, String password, List<Role> roles, boolean isEnabled) {
+    private List<com.kolej.bartosz.zalrest.model.Role> roles;
+    public CustomUser(String username, String password, List<com.kolej.bartosz.zalrest.model.Role> roles, boolean isEnabled) {
         this.username = username;
         this.password = password;
         this.roles = roles;

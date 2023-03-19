@@ -1,9 +1,9 @@
 package com.kolej.bartosz.zalrest;
 
-import com.kolej.bartosz.zalrest.model.CustomUser;
+import com.kolej.bartosz.zalrest.customer.model.CustomUser;
+import com.kolej.bartosz.zalrest.customer.repository.RoleRepository;
 import com.kolej.bartosz.zalrest.model.Role;
-import com.kolej.bartosz.zalrest.repository.RoleRepository;
-import com.kolej.bartosz.zalrest.repository.UserRepository;
+import com.kolej.bartosz.zalrest.customer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

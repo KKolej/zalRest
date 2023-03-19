@@ -21,12 +21,15 @@ public class Config extends WebSecurityConfigurerAdapter {
     private static final String[] WHITELIST = {
             "/configuration/ui",
             "/swagger-ui.html",
+            "/swagger-ui/**",
             "/swagger-resources/**",
             "/v2/api-docs",
+            "/api-docs/**",
             "/webjars/**",
             "/h2-console/**"
     };
     private final DataSource dataSource;
+
     private final ObjectMapper objectMapper;
     private final RestAuthFailHandler restAuthFailHandler;
     private final RestAuthSuccessHandler restAuthSuccessHandler;
@@ -56,9 +59,10 @@ public class Config extends WebSecurityConfigurerAdapter {
         System.out.println("configure");
         http.csrf().disable();
         http.authorizeRequests()
-//                .antMatchers(WHITELIST).permitAll()
+                .antMatchers(WHITELIST).permitAll()
 //                .antMatchers("/wordUser/**").hasRole("USER")
 //                .antMatchers("/word/**").hasRole("USER")
+//                .anyRequest().authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

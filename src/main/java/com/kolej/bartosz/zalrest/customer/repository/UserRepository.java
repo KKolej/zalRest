@@ -1,6 +1,6 @@
-package com.kolej.bartosz.zalrest.repository;
+package com.kolej.bartosz.zalrest.customer.repository;
 
-import com.kolej.bartosz.zalrest.model.CustomUser;
+import com.kolej.bartosz.zalrest.customer.model.CustomUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
