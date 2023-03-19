@@ -26,7 +26,6 @@ class RestAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        System.out.println("onAuthenticationSuccess");
         String token = JWT.create()
                 .withSubject(authentication.getPrincipal().toString())
                 .withExpiresAt(new Date(System.currentTimeMillis() + expTime))

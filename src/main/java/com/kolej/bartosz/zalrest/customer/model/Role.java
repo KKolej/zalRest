@@ -1,4 +1,4 @@
-package com.kolej.bartosz.zalrest.model;
+package com.kolej.bartosz.zalrest.customer.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -6,10 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -20,7 +17,8 @@ import java.util.UUID;
 public class Role implements GrantedAuthority {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition="UUID")
     private UUID id;
     @Column(unique = true)
     private String name;

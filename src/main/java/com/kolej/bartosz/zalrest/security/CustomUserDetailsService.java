@@ -1,7 +1,7 @@
 package com.kolej.bartosz.zalrest.security;
 
 import com.kolej.bartosz.zalrest.customer.model.CustomUser;
-import com.kolej.bartosz.zalrest.model.Role;
+import com.kolej.bartosz.zalrest.customer.model.Role;
 import com.kolej.bartosz.zalrest.customer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -26,7 +26,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("loadUserByUsername");
         Optional<CustomUser> myUser = userRepository.getMyUserByUsername(username);
         if (myUser.isPresent()) {
 

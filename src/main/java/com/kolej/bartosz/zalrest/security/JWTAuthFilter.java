@@ -38,7 +38,6 @@ public class JWTAuthFilter extends BasicAuthenticationFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("doFilterInternal");
         UsernamePasswordAuthenticationToken authentication = getAuthentication(request);
         if (authentication == null) {
             filterChain.doFilter(request, response);
@@ -49,7 +48,6 @@ public class JWTAuthFilter extends BasicAuthenticationFilter {
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
-        System.out.println("getAuthentication");
         String token = request.getHeader(TOKEN_HEADER);
         if (token != null && token.startsWith(TOKEN_PREFIX)) {
             String userName = JWT.require(Algorithm.HMAC256(secret))

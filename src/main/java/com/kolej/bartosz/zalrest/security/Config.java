@@ -26,7 +26,8 @@ public class Config extends WebSecurityConfigurerAdapter {
             "/v2/api-docs",
             "/api-docs/**",
             "/webjars/**",
-            "/h2-console/**"
+            "/h2-console/**",
+            "/user/singUp"
     };
     private final DataSource dataSource;
 
@@ -49,21 +50,19 @@ public class Config extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        System.out.println("configure auth");
         auth.jdbcAuthentication()
                 .dataSource(dataSource);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        System.out.println("configure");
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers(WHITELIST).permitAll()
 //                .antMatchers("/wordUser/**").hasRole("USER")
 //                .antMatchers("/word/**").hasRole("USER")
-//                .anyRequest().authenticated()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
+//                .anyRequest().permitAll()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
@@ -75,7 +74,6 @@ public class Config extends WebSecurityConfigurerAdapter {
     }
 
     public CustomUsernamePasswordAuthenticationFilter authFilter() {
-        System.out.println("authFilter");
         CustomUsernamePasswordAuthenticationFilter customUsernamePasswordAuthenticationFilter = new CustomUsernamePasswordAuthenticationFilter(objectMapper);
         customUsernamePasswordAuthenticationFilter.setAuthenticationSuccessHandler(restAuthSuccessHandler);
         customUsernamePasswordAuthenticationFilter.setAuthenticationFailureHandler(restAuthFailHandler);

@@ -13,17 +13,28 @@ import java.util.UUID;
 public class CustomUser {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition="UUID")
     private UUID id;
     private String username;
     private String password;
     private boolean enabled;
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<com.kolej.bartosz.zalrest.model.Role> roles;
-    public CustomUser(String username, String password, List<com.kolej.bartosz.zalrest.model.Role> roles, boolean isEnabled) {
+    private List<Role> roles;
+    @OneToOne(fetch = FetchType.EAGER)
+    private UserSettings userSettings;
+    public CustomUser(String username, String password, List<Role> roles, boolean isEnabled) {
         this.username = username;
         this.password = password;
         this.roles = roles;
         this.enabled = isEnabled;
+    }
+
+    public CustomUser(String username, String password, List<Role> roles, UserSettings userSettings) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+        this.userSettings = userSettings;
+        this.enabled = true;
     }
 }

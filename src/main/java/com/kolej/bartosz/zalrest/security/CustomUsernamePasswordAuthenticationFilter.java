@@ -1,7 +1,7 @@
 package com.kolej.bartosz.zalrest.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kolej.bartosz.zalrest.model.LoginCredentials;
+import com.kolej.bartosz.zalrest.customer.model.LoginCredentials;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -22,7 +22,6 @@ public class CustomUsernamePasswordAuthenticationFilter extends UsernamePassword
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        System.out.println("attemptAuthentication");
         try {
             BufferedReader reader = request.getReader();
             StringBuilder sb = new StringBuilder();

@@ -1,6 +1,6 @@
 package com.kolej.bartosz.zalrest.customer.repository;
 
-import com.kolej.bartosz.zalrest.model.Role;
+import com.kolej.bartosz.zalrest.customer.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

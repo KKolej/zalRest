@@ -1,8 +1,8 @@
 package com.kolej.bartosz.zalrest;
 
 import com.kolej.bartosz.zalrest.customer.model.CustomUser;
+import com.kolej.bartosz.zalrest.customer.model.Role;
 import com.kolej.bartosz.zalrest.customer.repository.RoleRepository;
-import com.kolej.bartosz.zalrest.model.Role;
 import com.kolej.bartosz.zalrest.customer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +18,7 @@ public class ZalRestApplication {
     //all from openAPI https://www.baeldung.com/spring-rest-openapi-documentation
 //http://localhost:8080/api-docs/
 //http://localhost:8080/swagger-ui/index.html
+//    http://localhost:8080/h2-console/
     @Autowired
     UserRepository userRepository;
     @Autowired

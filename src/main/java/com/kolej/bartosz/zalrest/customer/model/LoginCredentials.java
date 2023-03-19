@@ -1,4 +1,4 @@
-package com.kolej.bartosz.zalrest.model;
+package com.kolej.bartosz.zalrest.customer.model;
 
 import lombok.Getter;
 import lombok.ToString;

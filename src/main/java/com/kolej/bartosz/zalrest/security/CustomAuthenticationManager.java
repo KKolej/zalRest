@@ -28,7 +28,6 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        System.out.println("CustomAuthenticationManager");
         String username = authentication.getPrincipal() + "";
         String password = authentication.getCredentials() + "";
 
