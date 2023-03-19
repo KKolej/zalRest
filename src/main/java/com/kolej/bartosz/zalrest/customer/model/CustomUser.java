@@ -16,6 +16,7 @@ public class CustomUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition="UUID")
     private UUID id;
+    @Column(unique = true)
     private String username;
     private String password;
     private boolean enabled;

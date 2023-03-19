@@ -38,10 +38,14 @@ class UserService {
     }
 
     UserSettings getUserSettings(String name) {
-        UserSettings userSettings = userRepository.getMyUserByUsername(
+        return userRepository.getMyUserByUsername(
                         name
                 ).orElseThrow(NoSuchElementException::new)
                 .getUserSettings();
-        return userSettings;
+    }
+
+    UserSettings updateUserData(UserSettings userSettings, String name) {
+        userSettings.setId(getUserSettings(name).getId());
+        return settingsRepository.save(userSettings);
     }
 }

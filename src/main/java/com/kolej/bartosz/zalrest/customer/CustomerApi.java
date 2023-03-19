@@ -27,6 +27,15 @@ class CustomerApi {
 
     @PostMapping("/singUp")
     public ResponseEntity<String> singUpUser(@RequestBody SingUpCredentials singUpCredentials) {
-        return new ResponseEntity<>(userService.createNewUser(singUpCredentials), HttpStatus.CREATED);
+        try {
+            return new ResponseEntity<>(userService.createNewUser(singUpCredentials), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PatchMapping("/edit")
+    public ResponseEntity<UserSettings> updateUserData(@RequestBody UserSettings userSettings, Principal principal) {
+        return new ResponseEntity<>(userService.updateUserData(userSettings, principal.getName()), HttpStatus.ACCEPTED);
     }
 }
