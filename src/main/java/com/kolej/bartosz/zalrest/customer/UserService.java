@@ -8,6 +8,7 @@ import com.kolej.bartosz.zalrest.customer.repository.SettingsRepository;
 import com.kolej.bartosz.zalrest.customer.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -47,5 +48,9 @@ class UserService {
     UserSettings updateUserData(UserSettings userSettings, String name) {
         userSettings.setId(getUserSettings(name).getId());
         return settingsRepository.save(userSettings);
+    }
+
+    void deleteUser(String name) {
+         userRepository.deleteByUsername(name);
     }
 }

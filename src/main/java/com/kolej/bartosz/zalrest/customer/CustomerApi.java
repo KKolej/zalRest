@@ -5,6 +5,7 @@ import com.kolej.bartosz.zalrest.customer.model.UserSettings;
 import com.kolej.bartosz.zalrest.customer.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -37,5 +38,12 @@ class CustomerApi {
     @PatchMapping("/edit")
     public ResponseEntity<UserSettings> updateUserData(@RequestBody UserSettings userSettings, Principal principal) {
         return new ResponseEntity<>(userService.updateUserData(userSettings, principal.getName()), HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("/delete")
+    @Transactional
+    public ResponseEntity<String> deleteUser(Principal principal) {
+        userService.deleteUser(principal.getName());
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

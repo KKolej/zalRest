@@ -22,7 +22,7 @@ public class CustomUser {
     private boolean enabled;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private UserSettings userSettings;
     public CustomUser(String username, String password, List<Role> roles, boolean isEnabled) {
         this.username = username;
