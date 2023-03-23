@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <div style="display: flex">
+        <h2>email:  </h2>
+        <h2 id="email"></h2>
+    </div>
+    <div style="display: flex">
+        <h2>phone number:  </h2>
+        <h2 id="phoneNumber"></h2>
+    </div>
+</head>
+<body>
+<h1>Welcome</h1>
+</body>
+<script>
+    let postData = JSON.stringify({
+        username: "admin",
+        password: "admin"
+    })
+
+    axios.post("http://localhost:8080/login", postData).then(response=>{
+        const token = response.headers.authorization
+
+        axios.get("http://localhost:8080/user/info", {
+            headers: {
+                "Authorization": token
+            }
+        }).then(response => {
+
+            console.log(response)
+            console.log(response.data)
+            document.getElementById("email").innerHTML = response.data.email;
+            document.getElementById("phoneNumber").innerHTML = response.data.phoneNumber;
+
+        })
+    });
+</script>
+</html>

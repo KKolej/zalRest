@@ -2,6 +2,7 @@ package com.kolej.bartosz.zalrest;
 
 import com.kolej.bartosz.zalrest.customer.model.CustomUser;
 import com.kolej.bartosz.zalrest.customer.model.Role;
+import com.kolej.bartosz.zalrest.customer.model.UserSettings;
 import com.kolej.bartosz.zalrest.customer.repository.RoleRepository;
 import com.kolej.bartosz.zalrest.customer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +16,15 @@ import java.util.List;
 @SpringBootApplication
 public class ZalRestApplication {
 
-    //all from openAPI https://www.baeldung.com/spring-rest-openapi-documentation
-//http://localhost:8080/api-docs/
-//http://localhost:8080/swagger-ui/index.html
-//    http://localhost:8080/h2-console/
+    // all from openAPI https://www.baeldung.com/spring-rest-openapi-documentation
+    // http://localhost:8080/api-docs/
+    // http://localhost:8080/swagger-ui/index.html
+    // http://localhost:8080/h2-console/
+
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(ZalRestApplication.class, args);
@@ -36,12 +38,16 @@ public class ZalRestApplication {
         Role roleAdmin = new Role("ADMIN");
         Role undefined = new Role("UNDEFINED");
 
+        UserSettings adminSettings = new UserSettings("admin@gmail.com",234324);
+
         roleRepository.save(roleAdmin);
         roleRepository.save(roleUser);
         roleRepository.save(undefined);
 
         CustomUser myUserAdmin = new CustomUser("admin", "{bcrypt}" + new BCryptPasswordEncoder().encode("admin"),
-                List.of(roleRepository.getRoleByName("ADMIN").orElse(undefined)), true);
+                List.of(roleRepository.getRoleByName("ADMIN").orElse(undefined)), adminSettings
+
+        );
 
         CustomUser userMyUser = new CustomUser("user", "{bcrypt}" + new BCryptPasswordEncoder().encode("user"),
                 List.of(roleRepository.getRoleByName("USER").orElse(undefined)), true);

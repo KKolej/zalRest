@@ -54,6 +54,8 @@ public class Config extends WebSecurityConfigurerAdapter {
                 .dataSource(dataSource);
     }
 
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
@@ -69,6 +71,8 @@ public class Config extends WebSecurityConfigurerAdapter {
                 .addFilter(authFilter())
                 .addFilter(jwtAuthFilter)
                 .exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+                .and()
+                .cors()
                 .and()
                 .headers().frameOptions().sameOrigin();
     }
