@@ -1,16 +1,43 @@
 <form  [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
     <fieldset>
         <legend>Login</legend>
-        <div class="form-field">
-            <label>Username:</label>
-            <input [formControl]="username" type="text"/>
-        </div>
-        <div class="form-field">
-            <label>Password:</label>
-            <input [formControl]="password"  type="password">
-        </div>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Username</mat-label>
+            <input matInput [formControl]="username" type="text"  value="user">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input matInput [formControl]="password"  type="password"  value="user">
+        </mat-form-field>
     </fieldset>
-    <div class="form-buttons">
-        <button class="btn btn-primary" [disabled]="loginForm.invalid" type="submit">Login</button>
+    <div class="form-buttons" style="padding-bottom: 50px">
+        <button class="example-full-width" mat-button mat-raised-button color="accent" [disabled]="loginForm.invalid" type="submit">Login</button>
+    </div>
+</form>
+
+<form [formGroup]="singUpForm" (ngSubmit)="singUp(singUpForm.value)" style="border-top: solid 10px grey">
+    <fieldset>
+        <legend>SignUp</legend>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Username</mat-label>
+            <input matInput [formControl]="usernameS" type="text">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input matInput [formControl]="passwordS"  type="password">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>email</mat-label>
+            <input matInput [formControl]="emailS"  type="email" >
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>phone number</mat-label>
+            <input matInput [formControl]="phoneNumberS"  type="number">
+        </mat-form-field>
+    </fieldset>
+    <div class="form-buttons" style="padding-bottom: 50px">
+        <button class="example-full-width" mat-button mat-raised-button color="accent" [disabled]="singUpForm.invalid" type="submit">SingUp</button>
     </div>
 </form>

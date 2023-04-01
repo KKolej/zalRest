@@ -9,6 +9,9 @@ import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -21,8 +24,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule ,
+    ReactiveFormsModule,
     MatSlideToggleModule,
+    MatButtonModule,
+    MatInputModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
