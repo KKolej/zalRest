@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <button class="btn btn-danger" (click)="getSimpleString()">Get String</button>
+        </div>
+        <div class="col-sm-10">
+            {{stringResult}}
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-2">
+            <button class="btn btn-danger" (click)="getDocumentsList()">Get Documents</button>
+        </div>
+        <div class="col-sm-10">
+            <ul>
+                <li *ngFor="let document of documents">
+                    {{document.name}}
+                    {{document.pages}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <form style="display: inline-flex;" [formGroup]="documentForm" (ngSubmit)="saveDocument(documentForm.value)">
+            <div class="col-sm-2">
+                <button class="btn btn-danger" type="submit" [disabled]="documentForm.invalid">Save document</button>
+            </div>
+            <div class="col-sm-2">
+                <label>Name</label>
+                <input type="text" [formControl]="name" />
+            </div>
+            <div class="col-sm-2">
+                <label>Owner</label>
+                <input type="text" [formControl]="owner" />
+            </div>
+            <div class="col-sm-2">
+                <label>Pages</label>
+                <input type="number" [formControl]="pages" />
+            </div>
+        </form>
+    </div>
+    <hr/>
+</div>
