@@ -1,22 +1,28 @@
-<div class="col-sm-6">
-    <h1>Active Auctions</h1>
-</div>
-<div class="col-sm-10">
-    <ul style="list-style-type: none">
-        <li *ngFor="let auction of auctions">
-            <div class="row">
-            <div class="col-6">
-                <h3>name: {{ auction.name}}</h3>
-                <h5 class="">price: {{auction.price}}</h5>
-                <h5 class="">minimum price: {{auction.minPrice}}</h5>
-                <h5 class="">buy now price: {{auction.buyNowPrice}}</h5>
+<div class="row" style="border: solid grey">
+    <div class="col-6">
+        <h3>name: {{auction.name}}</h3>
+        <h5 >price: {{auction.price}}</h5>
+        <h5 >minimum price: {{auction.minPrice}}</h5>
+        <h5 >buy now price: {{auction.buyNowPrice}}</h5>
+        <h5 >end date: {{auction.endDate}}</h5>
+        <h5 >Seller: {{auction.sellerData.username}}</h5>
+        <h5 *ngIf="auction.buyerData">Actual buyer: {{auction.buyerData.username}}</h5>
+    </div>
+    <div class="col-6">
+
+        <form style="display: inline-flex;" [formGroup]="newPrice" (ngSubmit)="updatePrice(newPrice.value)">
+            <div class="col-sm-2">
+                <button class="btn btn-danger" type="submit" [disabled]="newPrice.invalid">Bid price
+                </button>
             </div>
-                <div class="col-6">
-                    <button>Bid price</button>
-                    <label for="newPrice">price:</label>
-                    <input type="newPrice" id="newPrice" name="newPrice"><br><br>
-                </div>
+            <div class="col-sm-2">
+                <label>New price</label>
+                <input type="text" [formControl]="price"/>
             </div>
-        </li>
-    </ul>
+        </form>
+        <div class="col-sm-2">
+            <button class="btn btn-danger" (click)="buyNow()">Buy now
+            </button>
+        </div>
+    </div>
 </div>

@@ -1,6 +1,7 @@
 package com.kolej.bartosz.zalrest.customer.model;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -37,5 +38,53 @@ public class CustomUser {
         this.roles = roles;
         this.userSettings = userSettings;
         this.enabled = true;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public UserSettings getUserSettings() {
+        return userSettings;
+    }
+
+    public void setUserSettings(UserSettings userSettings) {
+        this.userSettings = userSettings;
     }
 }

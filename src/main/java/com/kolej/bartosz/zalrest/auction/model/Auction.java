@@ -28,6 +28,7 @@ public class Auction {
     private BigDecimal minPrice;
     private BigDecimal buyNowPrice;
     private LocalDate endDate;
+    private boolean active;
 
     public Auction(CustomUser sellerData, AuctionData auctionData) {
         this.sellerData = sellerData;
@@ -37,5 +38,86 @@ public class Auction {
         this.minPrice = auctionData.getMinPrice();
         this.buyNowPrice = auctionData.getBuyNowPrice();
         this.endDate = LocalDate.now().plusDays(7);
+        this.active = true;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public CustomUser getSellerData() {
+        return sellerData;
+    }
+
+    public void setSellerData(CustomUser sellerData) {
+        this.sellerData = sellerData;
+    }
+
+    public CustomUser getBuyerData() {
+        return buyerData;
+    }
+
+    public void setBuyerData(CustomUser buyerData) {
+        this.buyerData = buyerData;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getMinPrice() {
+        return minPrice;
+    }
+
+    public void setMinPrice(BigDecimal minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public BigDecimal getBuyNowPrice() {
+        return buyNowPrice;
+    }
+
+    public void setBuyNowPrice(BigDecimal buyNowPrice) {
+        this.buyNowPrice = buyNowPrice;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

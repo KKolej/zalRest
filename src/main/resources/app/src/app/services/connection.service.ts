@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
-import {AuctionRecord, BasicActionData} from '../model/Auction';
+import {AuctionAction, AuctionRecord, BasicActionData} from '../model/Auction';
 
 const BASE_URL = 'http://localhost:8080/';
 
@@ -28,9 +28,19 @@ export class ConnectionService {
       .pipe(catchError(this.handleError<[]>('saveDocument')))
   }
 
+  bidAuction(doc: AuctionAction): Observable<any> {
+    return this.http.post(BASE_URL + 'auction/bidPrice', doc, this.option)
+      .pipe(catchError(this.handleError<[]>('saveDocument')))
+  }
+
+  buyNowAuction(doc: AuctionAction): Observable<any> {
+    return this.http.post(BASE_URL + 'auction/buyNow', doc, this.option)
+      .pipe(catchError(this.handleError<[]>('saveDocument')))
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.log(error)
+      alert(error.error)
       return of(result as T)
     }
   }

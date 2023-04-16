@@ -46,7 +46,6 @@ export class HomeComponent implements OnInit {
 
   getAllAuctions(): void {
     this.connectionService.getAllAuctions().subscribe(r => {
-      console.log(r)
       this.auctions = r
     })
   }
