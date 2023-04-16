@@ -1,0 +1,22 @@
+<div class="col-sm-6">
+    <h1>Active Auctions</h1>
+</div>
+<div class="col-sm-10">
+    <ul style="list-style-type: none">
+        <li *ngFor="let auction of auctions">
+            <div class="row">
+            <div class="col-6">
+                <h3>name: {{ auction.name}}</h3>
+                <h5 class="">price: {{auction.price}}</h5>
+                <h5 class="">minimum price: {{auction.minPrice}}</h5>
+                <h5 class="">buy now price: {{auction.buyNowPrice}}</h5>
+            </div>
+                <div class="col-6">
+                    <button>Bid price</button>
+                    <label for="newPrice">price:</label>
+                    <input type="newPrice" id="newPrice" name="newPrice"><br><br>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

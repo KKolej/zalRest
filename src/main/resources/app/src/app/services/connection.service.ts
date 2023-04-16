@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
-import { myDocument } from '../model/myDocument';
+import {AuctionRecord, BasicActionData} from '../model/Auction';
 
 const BASE_URL = 'http://localhost:8080/';
 
@@ -13,13 +13,8 @@ export class ConnectionService {
 
   constructor(private http: HttpClient) { }
 
-  getString(): Observable<any> {
-    return this.http.get<any>(BASE_URL + 'word')
-      .pipe(catchError(this.handleError<string>('getString', "")))
-  }
-
-  getDocumentList(): Observable<myDocument[]> {
-    return this.http.get<myDocument[]>(BASE_URL + 'documents')
+  getAllAuctions(): Observable<AuctionRecord[]> {
+    return this.http.get<AuctionRecord[]>(BASE_URL + 'auction/all')
       .pipe(catchError(this.handleError<[]>('getDocumentList', [])))
   }
 
@@ -28,8 +23,8 @@ export class ConnectionService {
       .pipe(catchError(this.handleError<[]>('login')))
   }
 
-  saveDocument(doc: myDocument): Observable<any> {
-    return this.http.post(BASE_URL + 'document/save', doc, this.option)
+  createNewAuction(doc: BasicActionData): Observable<any> {
+    return this.http.post(BASE_URL + 'auction/new', doc, this.option)
       .pipe(catchError(this.handleError<[]>('saveDocument')))
   }
 

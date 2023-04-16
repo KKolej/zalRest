@@ -1,7 +1,7 @@
-import { myDocument } from './../../model/myDocument';
 import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from 'src/app/services/connection.service';
 import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
+import {AuctionRecord} from "../../model/Auction";
 
 @Component({
   selector: 'app-home',
@@ -9,42 +9,45 @@ import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  stringResult: string = ""
-  documents: myDocument[] = []
-  documentForm: FormGroup
+  auctions: AuctionRecord[] = []
+  auctionForm: FormGroup
   name: FormControl
-  pages: FormControl
-  owner: FormControl
+  amount: FormControl
+  price: FormControl
+  minPrice: FormControl
+  buyNowPrice: FormControl
 
   constructor(private connectionService: ConnectionService) { }
 
   ngOnInit(): void {
+    this.getAllAuctions();
+
     this.name = new FormControl('', Validators.required)
-    this.pages = new FormControl('', Validators.required)
-    this.owner = new FormControl('', Validators.required)
-        
-    this.documentForm = new FormGroup({
+    this.amount = new FormControl('', Validators.required)
+    this.minPrice = new FormControl('', Validators.required)
+    this.buyNowPrice = new FormControl('', Validators.required)
+    this.price = new FormControl('', Validators.required)
+
+    this.auctionForm = new FormGroup({
       name: this.name,
-      pages: this.pages,
-      owner: this.owner
+      amount: this.amount,
+      minPrice: this.minPrice,
+      price: this.price,
+      buyNowPrice: this.buyNowPrice
     })
   }
 
   saveDocument(value: any): void {
-    this.connectionService.saveDocument(value).subscribe(r => {
+    this.connectionService.createNewAuction(value).subscribe(r => {
       console.log(r)
+      this.getAllAuctions()
     })
   }
 
-  getSimpleString(): void {
-    this.connectionService.getString().subscribe(r => {
-      this.stringResult = r
-    })
-  }
-
-  getDocumentsList(): void {
-    this.connectionService.getDocumentList().subscribe(r => {
-      this.documents = r
+  getAllAuctions(): void {
+    this.connectionService.getAllAuctions().subscribe(r => {
+      console.log(r)
+      this.auctions = r
     })
   }
 }

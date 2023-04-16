@@ -1,45 +1,34 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-2">
-            <button class="btn btn-danger" (click)="getSimpleString()">Get String</button>
-        </div>
-        <div class="col-sm-10">
-            {{stringResult}}
-        </div>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col-sm-2">
-            <button class="btn btn-danger" (click)="getDocumentsList()">Get Documents</button>
-        </div>
-        <div class="col-sm-10">
-            <ul>
-                <li *ngFor="let document of documents">
-                    {{document.name}}
-                    {{document.pages}}
-                </li>
-            </ul>
-        </div>
-    </div>
-    <hr />
-    <div class="row">
-        <form style="display: inline-flex;" [formGroup]="documentForm" (ngSubmit)="saveDocument(documentForm.value)">
+        <form style="display: inline-flex;" [formGroup]="auctionForm" (ngSubmit)="saveDocument(auctionForm.value)">
             <div class="col-sm-2">
-                <button class="btn btn-danger" type="submit" [disabled]="documentForm.invalid">Save document</button>
+                <button class="btn btn-danger" type="submit" [disabled]="auctionForm.invalid">Save document</button>
             </div>
             <div class="col-sm-2">
                 <label>Name</label>
-                <input type="text" [formControl]="name" />
+                <input type="text" [formControl]="name"/>
             </div>
             <div class="col-sm-2">
-                <label>Owner</label>
-                <input type="text" [formControl]="owner" />
+                <label>Amount</label>
+                <input type="number" [formControl]="amount"/>
             </div>
             <div class="col-sm-2">
-                <label>Pages</label>
-                <input type="number" [formControl]="pages" />
+                <label>Minimal price</label>
+                <input type="number" [formControl]="minPrice"/>
+            </div>
+            <div class="col-sm-2">
+                <label>Buy now price</label>
+                <input type="number" [formControl]="buyNowPrice"/>
+            </div>
+            <div class="col-sm-2">
+                <label>Start price</label>
+                <input type="number" [formControl]="price"/>
             </div>
         </form>
+    </div>
+    <hr/>
+    <div class="row">
+        <app-auction [auctions]="auctions"></app-auction>
     </div>
     <hr/>
 </div>

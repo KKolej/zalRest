@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
-class UserService {
+public class UserService {
 
     private final UserRepository userRepository;
     private final SettingsRepository settingsRepository;
@@ -43,6 +43,12 @@ class UserService {
                         name
                 ).orElseThrow(NoSuchElementException::new)
                 .getUserSettings();
+    }
+
+    public CustomUser getUser(String name) {
+        return userRepository.getMyUserByUsername(
+                name
+        ).orElseThrow(NoSuchElementException::new);
     }
 
     UserSettings updateUserData(UserSettings userSettings, String name) {
