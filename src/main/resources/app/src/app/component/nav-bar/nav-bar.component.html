@@ -1,8 +1,10 @@
 <div class="row main">
+    <div class="col-sm-3">
+        <button  mat-raised-button color="warn" [routerLink]="['user']">User</button>
+    </div>
     <div class="col-sm-3 login">
         <button (click)="logout()" mat-raised-button color="warn" [routerLink]="['login']">Logout</button>
     </div>
-
     <div class="col-sm-3 home">
         <button  mat-raised-button color="primary" [routerLink]="['home']">Home</button>
     </div>

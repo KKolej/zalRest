@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthInterceptor} from "./component/login/auth.interceptor";
 import { AuctionComponent } from './component/auction/auction.component';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { UserComponent } from './component/user/user.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     NavBarComponent,
     HomeComponent,
     LoginComponent,
-    AuctionComponent
+    AuctionComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
