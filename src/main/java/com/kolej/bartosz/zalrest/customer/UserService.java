@@ -27,7 +27,7 @@ public class UserService {
     }
 
     String createNewUser(SingUpCredentials singUpCredentials) {
-        UserSettings userSettings = new UserSettings(singUpCredentials.getEmail(), singUpCredentials.getPhoneNumber());
+        UserSettings userSettings = new UserSettings(singUpCredentials.getEmail(), singUpCredentials.getPhoneNumber(), singUpCredentials.getUsername());
         userSettings = settingsRepository.save(userSettings);
         CustomUser customUser = new CustomUser(
                 singUpCredentials.getUsername(),

@@ -17,10 +17,12 @@ public class UserSettings {
     private UUID id;
     private int phoneNumber;
     private String email;
+    private String username;
 
-    public UserSettings(String email, int phoneNumber) {
+    public UserSettings(String email, int phoneNumber, String username) {
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.username = username;
     }
 
     public UserSettings() {

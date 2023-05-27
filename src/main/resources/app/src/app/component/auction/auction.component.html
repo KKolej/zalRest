@@ -17,11 +17,15 @@
             </div>
             <div class="col-sm-2">
                 <label>New price</label>
-                <input type="text" [formControl]="price"/>
+                <input type="number" [formControl]="price"/>
             </div>
         </form>
         <div class="col-sm-2">
             <button class="btn btn-danger" (click)="buyNow()">Buy now
+            </button>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-danger" (click)="delete()" [hidden]="!isAuctionOwner()" [disabled]="!isAuctionOwner()">Delete
             </button>
         </div>
     </div>

@@ -2,7 +2,7 @@
     <div class="row">
         <form style="display: inline-flex;" [formGroup]="auctionForm" (ngSubmit)="saveDocument(auctionForm.value)">
             <div class="col-sm-2">
-                <button class="btn btn-danger" type="submit" [disabled]="auctionForm.invalid">Save document</button>
+                <button class="btn btn-danger" type="submit" [disabled]="auctionForm.invalid">Add auction</button>
             </div>
             <div class="col-sm-2">
                 <label>Name</label>

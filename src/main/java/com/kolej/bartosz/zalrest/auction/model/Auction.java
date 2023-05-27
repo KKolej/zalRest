@@ -3,6 +3,7 @@ package com.kolej.bartosz.zalrest.auction.model;
 import com.kolej.bartosz.zalrest.customer.model.CustomUser;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -119,5 +120,11 @@ public class Auction {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    @NotNull
+    public Auction updateFromData(@NotNull AuctionData auctionData) {
+        this.setName(auctionData.getName());
+        return this;
     }
 }

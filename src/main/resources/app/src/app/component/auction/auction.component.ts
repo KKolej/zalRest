@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AuctionAction, AuctionRecord} from "../../model/Auction";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ConnectionService} from "../../services/connection.service";
+import {CustomUser} from "../../model/User";
 
 @Component({
   selector: 'app-auction',
@@ -14,6 +15,7 @@ export class AuctionComponent implements OnInit {
 
   newPrice: FormGroup
   price: FormControl
+  user: CustomUser
 
   constructor(private connectionService: ConnectionService) { }
 
@@ -22,6 +24,11 @@ export class AuctionComponent implements OnInit {
         Validators.required, Validators.min(this.auction.price + 0.1)
         ])
     )
+
+    this.connectionService.getUserInfo().subscribe(r => {
+      console.log('user ' , r)
+      this.user =  r
+    })
 
     this.newPrice = new FormGroup({
       price: this.price
@@ -40,6 +47,18 @@ export class AuctionComponent implements OnInit {
   buyNow() {
     const action = new AuctionAction(this.auction.id, true, this.auction.buyNowPrice)
     this.connectionService.buyNowAuction(action).subscribe(r => {
+      console.log(r)
+      window.location.reload();
+    })
+  }
+
+  isAuctionOwner() {
+    return this.auction.sellerData.username == this.user.username;
+  }
+
+  delete() {
+    const action = new AuctionAction(this.auction.id, false, this.auction.buyNowPrice)
+    this.connectionService.deleteAuction(action).subscribe(r => {
       console.log(r)
       window.location.reload();
     })

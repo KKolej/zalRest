@@ -38,7 +38,7 @@ public class ZalRestApplication {
         Role roleAdmin = new Role("ADMIN");
         Role undefined = new Role("UNDEFINED");
 
-        UserSettings adminSettings = new UserSettings("admin@gmail.com",234324);
+        UserSettings adminSettings = new UserSettings("admin@gmail.com",234324, "admin");
 
         roleRepository.save(roleAdmin);
         roleRepository.save(roleUser);
